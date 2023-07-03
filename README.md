@@ -10,10 +10,37 @@ pip install folder-structure-generator
 # Usage
 To generate a project directory structure, simply run the following command:
 ```
-from folder-structure-generator import FolderStructureGenerator
-print(FolderStructureGenerator().generate_folder_structure_md())
+from folder_structure import FolderStructureGenerator
+
+# List of folders to be ignored in the folder structure generation
+folders_to_ignore = [
+    "__pycache__",
+    ".git",
+    ".idea",
+    "venv",
+]
+
+# Generate the markdown representation of the folder structure
+folder_structure_generator = FolderStructureGenerator(ignored_folders=folders_to_ignore)
+folder_structure_md = folder_structure_generator.generate_folder_structure_md()
+
+# Print the markdown representation of the folder structure
+print(folder_structure_md)
 ```
 This will generate a predefined directory tree in the current working directory. You can then copy and paste the generated structure into your project documentation or README file.
+
+## Expected Output
+```
+folder-structure-generator/
+├── LICENSE
+├── pyproject.toml
+├── README.md
+├── setup.py
+├── .gitignore
+├── folder_structure/
+├── ├── __init__.py
+├── ├── folder_structure_generator.py
+```
 
 # Features
 - Automated generation of project directory structures
