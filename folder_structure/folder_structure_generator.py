@@ -2,11 +2,14 @@ import os
 
 
 class FolderStructureGenerator:
-    """This class generates the markdown representation of the current folder structure."""
+    """Generates the markdown representation of the current folder structure."""
 
     def __init__(self, ignored_folders=None):
-        """Initializes the FolderStructureGenerator class.
-        :param ignored_folders: List of folders to ignore during folder structure generation."""
+        """
+        Initializes the FolderStructureGenerator.
+
+        :param ignored_folders: List of folders to ignore during folder structure generation.
+        """
 
         if ignored_folders is None:
             ignored_folders = [
@@ -21,14 +24,17 @@ class FolderStructureGenerator:
             ]
         self.ignored_folders = ignored_folders
 
-    def generate_folder_structure_md(self, indentation=""):
+    def generate_folder_structure_md(
+        self, current_directory=os.getcwd(), indentation=""
+    ):
         """
         Generates the markdown representation of the current folder structure.
 
+        :param current_directory: Current directory to generate the folder structure from.
         :param indentation: Indentation string for representing folder hierarchy.
         :return: Markdown string representing the folder structure.
         """
-        current_directory = os.getcwd()
+
         markdown = indentation + os.path.basename(current_directory) + "/\n"
         entries = os.scandir(current_directory)
 

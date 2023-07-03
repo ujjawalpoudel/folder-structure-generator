@@ -1,17 +1,17 @@
-# Project Tree
-Project Tree is a Python package that simplifies the generation of project directory structures. It provides an easy way to create a predefined directory tree that can be copied and pasted into project documentation or README files.
+# Folder Structure Generator
+Folder Structure Generator is a Python package that simplifies the generation of project directory structures. It provides an easy way to create a predefined directory tree that can be copied and pasted into project documentation or README files.
 
 # Installation
-You can install Project Tree using pip:
+You can install Folder Structure Generator using pip:
 ```
-pip install project-tree
+pip install folder-structure-generator
 ```
 
 # Usage
 To generate a project directory structure, simply run the following command:
 ```
-from project-tree import FolderStructureGenerator
-print(FolderStructureGenerator.generate_folder_structure_md())
+from folder-structure-generator import FolderStructureGenerator
+print(FolderStructureGenerator().generate_folder_structure_md())
 ```
 This will generate a predefined directory tree in the current working directory. You can then copy and paste the generated structure into your project documentation or README file.
 
