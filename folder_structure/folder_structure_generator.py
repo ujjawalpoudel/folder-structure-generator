@@ -8,9 +8,8 @@ class FolderStructureGenerator:
         """
         Initializes the FolderStructureGenerator.
 
-        :param ignored_folders: List of folders to ignore during folder structure generation.
+        :param ignored_folders: List of folders (with relative paths) to ignore during folder structure generation.
         """
-
         if ignored_folders is None:
             ignored_folders = [
                 "__pycache__",
@@ -22,7 +21,9 @@ class FolderStructureGenerator:
                 "dist",
                 "env",
             ]
-        self.ignored_folders = ignored_folders
+        self.ignored_folders = [
+            os.path.join(os.getcwd(), folder) for folder in ignored_folders
+        ]
 
     def generate_folder_structure_md(
         self, current_directory=os.getcwd(), indentation=""
@@ -39,12 +40,17 @@ class FolderStructureGenerator:
         entries = os.scandir(current_directory)
 
         for entry in entries:
-            if entry.name not in self.ignored_folders:
-                if entry.is_dir():
-                    markdown += self.generate_folder_structure_md(
-                        entry.path, indentation + "├── "
-                    )
-                else:
+            entry_path = entry.path  # Get the full path of the entry
+
+            if entry.is_dir():
+                # Skip the folder's contents if its path is in ignored_folders
+                if entry_path in self.ignored_folders:
                     markdown += indentation + "├── " + entry.name + "\n"
+                else:
+                    markdown += self.generate_folder_structure_md(
+                        entry_path, indentation + "├── "
+                    )
+            elif entry.is_file():
+                markdown += indentation + "├── " + entry.name + "\n"
 
         return markdown
