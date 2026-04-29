@@ -1,23 +1,42 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "folder-structure-generator"
-version = "0.0.2"
-authors = [
-  { name="Ujjawal Poudel", email="ujjawalpoudel@gmail.com" },
-]
-description = 'The "Folder Structure Generator" simplifies the generation of project directory structures. Easily create a predefined directory tree, copy it to project documentation or README files, and save time when setting up new projects. Eliminate manual directory creation, ensure consistency across projects, and enhance project organization.'
+version = "0.1.0"
+description = "Generate Markdown-friendly folder trees for project documentation."
 readme = "README.md"
-requires-python = ">=3.7"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+requires-python = ">=3.8"
+license = { text = "Apache-2.0" }
+authors = [
+  { name = "Ujjawal Poudel", email = "ujjawalpoudel@gmail.com" },
 ]
-keywords = ["python",'documentation', "structure"]
+keywords = ["documentation", "folder-structure", "markdown", "project-tree"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Documentation",
+  "Topic :: Software Development :: Documentation",
+]
+
+[project.scripts]
+folder-structure = "folder_structure.cli:main"
+folder-structure-generator = "folder_structure.cli:main"
 
 [project.urls]
+Homepage = "https://github.com/ujjawalpoudel/folder-structure-generator"
 Repository = "https://github.com/ujjawalpoudel/folder-structure-generator"
-"Bug Tracker" = "https://github.com/ujjawalpoudel/folder-structure-generator/issues"
+Issues = "https://github.com/ujjawalpoudel/folder-structure-generator/issues"
+
+[tool.setuptools.packages.find]
+include = ["folder_structure*"]
